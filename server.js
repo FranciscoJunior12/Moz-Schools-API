@@ -1,19 +1,8 @@
-const express = require('express');
-const schoolRoutes = require('./src/router/schoolRouutes')
+const app = require("./app.js")
+const port = 3001
 
-const app = express();
-app.use(express.json());
-
-app.get('/', (req, res) => {
-
-    res.status(200).json({ msg: "Hello world" });
-
-});
-
-app.use('/api/schools', schoolRoutes);
-
-app.listen('3001', () => {
-    console.log("servidor rodando em http://localhost:3001");
+app.listen(port, () => {
+    console.log(`servidor rodando em http://localhost:${port}`);
 });
 
 
