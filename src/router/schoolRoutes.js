@@ -5,6 +5,11 @@ const schoolController = require('../controller/schoolController')
 
 
 router.get('/', schoolController.index)
+router.get('/:id', schoolController.getById)
+router.get('/provincia/:province', schoolController.getByProvince)
+router.get('/distrito/:district', schoolController.getByDistrict)
+router.get('/posto/:post', schoolController.getByPost)
+router.get('/localidade/:locality', schoolController.getByLocality)
 
 
 module.exports = router;

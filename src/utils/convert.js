@@ -3,7 +3,7 @@ const fs = require('fs');
 
 async function convertExcelToJson() {
     const workbook = new exceljs.Workbook();
-    await workbook.xlsx.readFile('F:/About Programming/Estudos/Node.Js Projects/moz-school-api/src/utils/mozambique_rede-escolar_wis_school-data.xlsx');
+    await workbook.xlsx.readFile('F:/About Programming/Estudos/Node.Js Projects/moz-schools-api/Moz-Schools-API/src/utils/mozambique_rede-escolar_wis_school-data.xlsx');
     const worksheet = workbook.getWorksheet(1); // Supondo que os dados estão na primeira planilha.
 
     const data = [];
@@ -27,15 +27,12 @@ async function convertExcelToJson() {
                         rowData["localidade"] = cell.value;
                         break;
                     case 5:
-                        rowData["povoado"] = cell.value;
-                        break;
-                    case 6:
                         rowData["nome"] = cell.value;
                         break;
-                    case 7:
+                    case 6:
                         rowData["longitude"] = cell.value;
                         break;
-                    case 8:
+                    case 7:
                         rowData["latitude"] = cell.value;
                         break;
                 }
@@ -46,7 +43,7 @@ async function convertExcelToJson() {
     });
 
     // Salve os dados em um arquivo JSON.
-    fs.writeFileSync('dados.json', JSON.stringify(data, null, 2));
+    fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
 
     console.log('Arquivo JSON criado com sucesso: dados.json');
 }
