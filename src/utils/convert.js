@@ -14,7 +14,7 @@ async function convertExcelToJson() {
 
                 switch (colNumber) {
                     case 1:
-                        rowData["id"] = rowNumber;
+                        rowData["codigo"] = rowNumber;
                         rowData["provincia"] = cell.value;
                         break;
                     case 2:

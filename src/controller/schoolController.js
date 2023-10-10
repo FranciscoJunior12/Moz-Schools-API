@@ -1,6 +1,28 @@
 const data = require('../data/data.json');
-//const compareStringWithoutAccents = require('../utils/compareString');
+
 const compare = require('../utils/compareString');
+
+const mongoose = require('mongoose');
+;
+const school = require('../model/School')
+const School = mongoose.model('Escola');
+
+
+
+
+exports.get = async (req, res) => {
+    try {
+        const data = await School.find();
+        res.status(200).json(data);
+
+    } catch (error) {
+        res.status(400).send(error);
+
+    }
+
+
+
+}
 
 
 exports.index = (req, res) => {
@@ -11,6 +33,7 @@ exports.index = (req, res) => {
     }
 
 }
+
 
 exports.getByProvince = (req, res) => {
     try {
@@ -108,7 +131,7 @@ exports.getById = (req, res) => {
     try {
 
         console.log(req.params.id);
-        
+
         const school = data.find((school) => { return school.id == req.params.id });
         console.log(school)
 

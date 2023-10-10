@@ -4,7 +4,9 @@ const router = express();
 const schoolController = require('../controller/schoolController')
 
 
-router.get('/', schoolController.index)
+router.get('/', schoolController.get)
+
+
 router.get('/:id', schoolController.getById)
 router.get('/provincia/:province', schoolController.getByProvince)
 router.get('/distrito/:district', schoolController.getByDistrict)
