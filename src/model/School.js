@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
     codigo: {
-        type: Number, // Use Number para campos numéricos
-
+        type: Number,
     },
     provincia: {
         type: String,
@@ -27,11 +26,11 @@ const schema = new Schema({
 
     },
     latitude: {
-        type: Number, // Use Number para campos numéricos
+        type: Number,
 
     },
     longitude: {
-        type: Number // Use Number para campos numéricos
+        type: Number
 
     },
 }, { strict: false });
