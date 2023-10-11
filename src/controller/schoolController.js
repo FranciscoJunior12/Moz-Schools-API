@@ -2,7 +2,6 @@ const data = require('../data/data.json');
 
 const compare = require('../utils/compareString');
 
-const unidecode = require('unidecode');
 
 const mongoose = require('mongoose');
 ;
@@ -48,7 +47,7 @@ exports.getByProvince = async (req, res) => {
             provincia: province
         });
 
- 
+
         if (data.length === 0) return res.status(204).json({
             messsage: "The request was successful, but there is no content to return."
         })
@@ -91,9 +90,9 @@ exports.getByDistrict = async (req, res) => {
 
         let { district } = req.params;
 
-      // district = district.charAt(0).toUpperCase() + district.slice(1).toLowerCase();
+
         const data = await School.find({
-            distrito: district
+            distrito: { $regex: district, $options: 'i' }
         });
 
 
@@ -132,8 +131,11 @@ exports.getByDistrict = async (req, res) => {
 exports.getByPost = async (req, res) => {
 
     try {
+        let { post } = req.params;
+
+
         const data = await School.find({
-            posto: req.params.post
+            posto: { $regex: post, $options: 'i' }
         });
 
 
@@ -174,10 +176,12 @@ exports.getByPost = async (req, res) => {
 exports.getByLocality = async (req, res) => {
 
     try {
-        const data = await School.find({
-            localidade: req.params.locality
-        });
+        let { locality } = req.params;
 
+
+        const data = await School.find({
+            distrito: { $regex: locality, $options: 'i' }
+        });
 
         if (data.length === 0) return res.status(204).json({
             messsage: "The request was successful, but there is no content to return."
