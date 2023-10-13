@@ -14,7 +14,7 @@ const School = mongoose.model('Escola');
 
 exports.get = async (req, res) => {
     try {
-        const data = await School.find();
+        const data = await School.find({}, { _id: 0, __v: 0 });
         return res.status(200).json(data);
 
     } catch (error) {
@@ -45,7 +45,7 @@ exports.getByProvince = async (req, res) => {
         province = province.charAt(0).toUpperCase() + province.slice(1).toLowerCase();
         const data = await School.find({
             provincia: province
-        });
+        }, { _id: 0, __v: 0 });
 
 
         if (data.length === 0) return res.status(204).json({
@@ -93,7 +93,7 @@ exports.getByDistrict = async (req, res) => {
 
         const data = await School.find({
             distrito: { $regex: district, $options: 'i' }
-        });
+        }, { _id: 0, __v: 0 });
 
 
         if (data.length === 0) return res.status(204).json({
@@ -136,7 +136,7 @@ exports.getByPost = async (req, res) => {
 
         const data = await School.find({
             posto: { $regex: post, $options: 'i' }
-        });
+        }, { _id: 0, __v: 0 });
 
 
         if (data.length === 0) return res.status(204).json({
@@ -181,7 +181,7 @@ exports.getByLocality = async (req, res) => {
 
         const data = await School.find({
             distrito: { $regex: locality, $options: 'i' }
-        });
+        }, { _id: 0, __v: 0 });
 
         if (data.length === 0) return res.status(204).json({
             messsage: "The request was successful, but there is no content to return."
@@ -223,9 +223,9 @@ exports.getById = async (req, res) => {
 
 
     try {
-        const data = await School.find({
+        const data = await School.findOne({
             codigo: req.params.id
-        });
+        }, { _id: 0, __v: 0 });
 
 
         if (data.length === 0) return res.status(204).json({
