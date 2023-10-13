@@ -1,14 +1,6 @@
-const data = require('../data/data.json');
-
-const compare = require('../utils/compareString');
-
-
 const mongoose = require('mongoose');
-;
 const school = require('../model/School')
 const School = mongoose.model('Escola');
-
-
 
 
 
@@ -22,22 +14,15 @@ exports.get = async (req, res) => {
 
     }
 
-
-
 }
 
 
-// exports.index = (req, res) => {
-//     try {
-//         return res.status(200).json(data);
-//     } catch (error) {
-//         return res.status(500).json({ error: "An internal server error occurred." });
-//     }
 
-// }
 
 
 exports.getByProvince = async (req, res) => {
+
+    if (!req.params.province) return res.status(400).json({ error: "missing params province" });
 
     try {
         let { province } = req.params;
@@ -48,7 +33,7 @@ exports.getByProvince = async (req, res) => {
         }, { _id: 0, __v: 0 });
 
 
-        if (data.length === 0) return res.status(204).json({
+        if (data.length === 0) return res.status(200).json({
             messsage: "The request was successful, but there is no content to return."
         })
 
@@ -59,32 +44,12 @@ exports.getByProvince = async (req, res) => {
 
     }
 
-
-    // try {
-    //     if (!req.params.province) return res.status(400).json({ error: "missing params pronvice" });
-
-    //     const filterData = data.filter((data) => {
-    //         return compare.compareStringWithoutAccents(data.provincia, req.params.province)
-    //     })
-
-
-    //     if (filterData.length === 0) return res.status(204).json({
-    //         messsage: "The request was successful, but there is no content to return."
-    //     })
-
-    //     return res.status(200).json(filterData)
-
-    // } catch (error) {
-
-    //     res.status(400).json({ erro: error })
-    // }
-
 }
 
 
 
 exports.getByDistrict = async (req, res) => {
-
+    if (!req.params.district) return res.status(400).json({ error: "missing params district" });
 
     try {
 
@@ -107,28 +72,13 @@ exports.getByDistrict = async (req, res) => {
 
     }
 
-    // try {
-    //     if (!req.params.district) return res.status(400).json({ error: "missing params district" });
 
-    //     const filterData = data.filter((data) => {
-    //         return compare.compareStringWithoutAccents(data.distrito, req.params.district)
-    //     })
-
-
-    //     if (filterData.length === 0) return res.status(204).json({
-    //         messsage: "The request was successful, but there is no content to return."
-    //     })
-
-    //     return res.status(200).json(filterData)
-
-    // } catch (error) {
-
-    //     return res.status(500).json({ error: "An internal server error occurred." });
-    // }
 }
 
 
 exports.getByPost = async (req, res) => {
+
+    if (!req.params.post) return res.status(400).json({ error: "missing params district" });
 
     try {
         let { post } = req.params;
@@ -139,7 +89,7 @@ exports.getByPost = async (req, res) => {
         }, { _id: 0, __v: 0 });
 
 
-        if (data.length === 0) return res.status(204).json({
+        if (data.length === 0) return res.status(200).json({
             messsage: "The request was successful, but there is no content to return."
         })
 
@@ -151,39 +101,24 @@ exports.getByPost = async (req, res) => {
     }
 
 
-    // try {
-    //     if (!req.params.post) return res.status(400).json({ error: "missing params district" });
 
-    //     const filterData = data.filter((data) => {
-    //         return compare.compareStringWithoutAccents(data.posto, req.params.post)
-    //     })
-
-
-    //     if (filterData.length === 0) return res.status(204).json({
-    //         messsage: "The request was successful, but there is no content to return."
-    //     })
-
-    //     return res.status(200).json(filterData)
-
-    // } catch (error) {
-
-    //     return res.status(500).json({ error: "An internal server error occurred." });
-    // }
 
 }
 
 
 exports.getByLocality = async (req, res) => {
 
+    if (!req.params.locality) return res.status(400).json({ error: "missing params district" });
+
     try {
         let { locality } = req.params;
 
 
         const data = await School.find({
-            distrito: { $regex: locality, $options: 'i' }
+            localidade: { $regex: locality, $options: 'i' }
         }, { _id: 0, __v: 0 });
 
-        if (data.length === 0) return res.status(204).json({
+        if (data.length === 0) return res.status(200).json({
             messsage: "The request was successful, but there is no content to return."
         })
 
@@ -193,29 +128,6 @@ exports.getByLocality = async (req, res) => {
         return res.status(500).json({ error: "An internal server error occurred." });
 
     }
-
-
-
-
-    // try {
-    //     if (!req.params.locality) return res.status(400).json({ error: "missing params district" });
-
-    //     const filterData = data.filter((data) => {
-    //         return compare.compareStringWithoutAccents(data.localidade, req.params.locality)
-    //     })
-
-
-    //     if (filterData.length === 0) return res.status(204).json({
-    //         messsage: "The request was successful, but there is no content to return."
-    //     })
-
-    //     return res.status(200).json(filterData)
-
-    // } catch (error) {
-
-    //     return res.status(500).json({ error: "An internal server error occurred." });
-    // }
-
 
 }
 
@@ -228,7 +140,7 @@ exports.getById = async (req, res) => {
         }, { _id: 0, __v: 0 });
 
 
-        if (data.length === 0) return res.status(204).json({
+        if (data.length === 0) return res.status(200).json({
             messsage: "The request was successful, but there is no content to return."
         })
 
@@ -240,23 +152,6 @@ exports.getById = async (req, res) => {
 
     }
 
-    // try {
-
-    //     console.log(req.params.id);
-
-    //     const school = data.find((school) => { return school.id == req.params.id });
-    //     console.log(school)
-
-    //     if (!school) return res.status(204).json({
-    //         messsage: "The request was successful, but there is no content to return."
-    //     })
-
-    //     return res.status(200).json({ school })
-
-    // } catch (error) {
-
-    //     return res.status(500).json({ error: "An internal server error occurred." });
-    // }
 
 
 }
