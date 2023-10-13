@@ -11,10 +11,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/mz/schools', schoolRoutes);
+
 app.use('/', (req, res) => {
     res.json({ msg: "Hello World" })
 });
+
+app.use('/api/mz/schools', schoolRoutes);
 
 const port = process.env.PORT || "5001"
 
