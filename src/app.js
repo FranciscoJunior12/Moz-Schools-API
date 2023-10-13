@@ -1,8 +1,8 @@
 
 const express = require('express');
 const cors = require('cors');
-const schoolRoutes = require('./src/router/schoolRoutes')
-const connection = require('./src/database/connection')
+const schoolRoutes = require('./routes/schoolRoutes')
+const connection = require('./database/connection')
 require('dotenv').config();
 
 
@@ -10,6 +10,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 
 app.get('/', (req, res) => {
@@ -18,9 +19,9 @@ app.get('/', (req, res) => {
 
 app.use('/api/mz/schools', schoolRoutes);
 
-const port = process.env.PORT || "5001"
+const PORT = 5001 || process.env.PORT
 
-app.listen(port, () => {
-    console.log(`servidor rodando em http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`servidor rodando em http://localhost:${PORT}`);
 });
 
