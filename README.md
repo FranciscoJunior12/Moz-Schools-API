@@ -104,7 +104,7 @@ We welcome contributions to this project. If you have suggestions, reports, or w
 
 ## Dataset Credits
 
-The dataset used in this project is provided by OCHA Mozambique, and we would like to express our gratitude for their valuable contribution to this research. Without their data, this analysis would not have been possible.
+The dataset used in this project is provided by OCHA Mozambique, and i would like to express my gratitude for their valuable contribution to this research. Without their data, this api would not have been possible.
 
 - **Dataset Name**: Mozambique Rede Escolar WiS School data
 - **Dataset Source**: https://data.humdata.org/dataset/mozambique-school-data
